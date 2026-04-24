@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:38972/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:32392/)",
+      "Bash(curl -s http://localhost:32392/)",
+      "Bash(wmic shadowcopy *)",
+      "Bash(node *)"
+    ]
+  }
+}
