@@ -204,12 +204,12 @@ button {
 .theme-toggle {
   position: fixed;
   top: 24px;
-  right: 24px;
+  right: calc(24px - var(--scrollbar-width, 0px));
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(30, 30, 34, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--surface);
+  border: 1px solid var(--border);
   backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
@@ -220,13 +220,13 @@ button {
 
 .theme-toggle:hover {
   transform: scale(1.1);
-  background: rgba(30, 30, 34, 0.9);
+  background: var(--surface-hover);
 }
 
 .theme-toggle svg {
   width: 22px;
   height: 22px;
-  stroke: #fff;
+  stroke: var(--text);
   fill: none;
   stroke-width: 2;
   position: absolute;

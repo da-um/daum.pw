@@ -265,9 +265,11 @@
 
       function show() {
         styleEl.textContent = '::-webkit-scrollbar { width: 8px !important; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }';
+        document.documentElement.style.setProperty('--scrollbar-width', '8px');
       }
       function hide() {
         styleEl.textContent = '::-webkit-scrollbar { width: 0 !important; }';
+        document.documentElement.style.setProperty('--scrollbar-width', '0px');
       }
 
       if (isTouch) { show(); return; }
