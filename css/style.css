@@ -71,6 +71,27 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
+/* Custom Scrollbar */
+html::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+  border: none;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+  border: none;
+}
+
+html::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 ::selection {
   background: var(--accent-mid);
   color: var(--text);
@@ -204,7 +225,7 @@ button {
 .theme-toggle {
   position: fixed;
   top: 24px;
-  right: calc(24px - var(--scrollbar-width, 0px));
+  right: 24px;
   width: 48px;
   height: 48px;
   border-radius: 50%;
