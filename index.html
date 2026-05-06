@@ -278,8 +278,7 @@
           clearTimeout(timer);
           show();
         } else {
-          clearTimeout(timer);
-          timer = setTimeout(hide, 300);
+          hide();
         }
       });
       document.addEventListener('mouseleave', hide);
