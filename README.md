@@ -20,4 +20,4 @@ node server.js
 
 本项目采用 [GNU Affero General Public License v3.0](LICENSE) 开源。
 
-> ⚠️ AGPL-3.0 具有强传染性，使用前请仔细阅读许可证条款。
+> 注意：AGPL-3.0 为强copyleft许可证，任何基于本项目的修改或网络服务部署均须以相同许可证公开源代码。使用前请务必完整阅读许可证内容。
