@@ -258,6 +258,35 @@
 
   <script>
     (function() {
+      const styleEl = document.createElement('style');
+      styleEl.id = 'dynamic-scrollbar';
+      document.head.appendChild(styleEl);
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+      function show() {
+        styleEl.textContent = '::-webkit-scrollbar { width: 8px !important; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }';
+      }
+      function hide() {
+        styleEl.textContent = '::-webkit-scrollbar { width: 0 !important; }';
+      }
+
+      if (isTouch) { show(); return; }
+
+      let timer;
+      document.addEventListener('mousemove', (e) => {
+        if (e.clientX > window.innerWidth - 40) {
+          clearTimeout(timer);
+          show();
+        } else {
+          clearTimeout(timer);
+          timer = setTimeout(hide, 300);
+        }
+      });
+      hide();
+    })();
+  </script>
+  <script>
+    (function() {
       const sigs = [
         { l1: 'Ctrl + Shift + T', l2: '恢复刚关掉的浏览器标签页' },
         { l1: 'Chrome 地址栏输入', l2: 'data:text/html,<html contenteditable> 临时记事本' },

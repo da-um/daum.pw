@@ -71,24 +71,6 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 3px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(245, 184, 66, 0.15);
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-}
-
 ::selection {
   background: var(--accent-mid);
   color: var(--text);
