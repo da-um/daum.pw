@@ -232,7 +232,7 @@ button {
   transition: opacity 0.3s, transform 0.3s;
 }
 
-.icon-sun { opacity: 1; }
+.icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
 .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
 
 [data-theme="dark"] .icon-sun { opacity: 0; transform: rotate(-90deg) scale(0.5); }
@@ -325,12 +325,6 @@ button {
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
-}
-
-.joke-source {
-  opacity: 0.85;
-  font-size: 11px;
-  color: var(--text-dim);
 }
 
 .hero-title {
@@ -560,175 +554,6 @@ button {
 }
 
 /* ========================================
-   Now Section
-   ======================================== */
-
-.section-now {
-  min-height: auto;
-  padding-top: 84px;
-  padding-bottom: 84px;
-  z-index: 3;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-now::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 70% 42% at 8% 15%, var(--accent-soft) 0%, transparent 60%),
-    radial-gradient(ellipse 65% 38% at 92% 88%, rgba(20, 184, 166, 0.12) 0%, transparent 60%);
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.section-now::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(var(--border) 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.22;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.now-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 1080px;
-}
-
-.now-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(24px);
-  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-}
-
-.now-card::before {
-  content: '';
-  position: absolute;
-  top: -60%;
-  right: -20%;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 70%);
-  opacity: 0.45;
-  pointer-events: none;
-  transition: transform 0.5s ease, opacity 0.35s ease;
-}
-
-.now-card::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.35;
-  transition: opacity 0.35s ease;
-}
-
-.now-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-  box-shadow: 0 22px 44px var(--shadow), 0 0 36px var(--accent-soft);
-}
-
-.now-card:hover::before {
-  transform: translate(-12px, 14px) scale(1.1);
-  opacity: 0.8;
-}
-
-.now-card:hover::after {
-  opacity: 1;
-}
-
-.now-label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border-radius: var(--radius-full);
-  padding: 4px 10px;
-  margin-bottom: 12px;
-}
-
-.now-card h3 {
-  font-family: var(--font-display);
-  font-size: 22px;
-  line-height: 1.35;
-  margin-bottom: 10px;
-}
-
-.now-card p {
-  color: var(--text-dim);
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-@media (min-width: 1025px) {
-  .section-now .section-header {
-    margin-bottom: 34px;
-  }
-
-  .now-grid {
-    grid-template-columns: 1.2fr 1fr 1fr;
-    grid-auto-rows: minmax(180px, auto);
-    gap: 24px;
-    max-width: 1240px;
-  }
-
-  .now-card {
-    min-height: 210px;
-    border-radius: var(--radius-lg);
-  }
-
-  .now-card:nth-child(1) {
-    grid-row: span 2;
-    padding: 30px 30px 34px;
-  }
-
-  .now-card:nth-child(1) h3 {
-    font-size: 30px;
-    line-height: 1.2;
-    margin-bottom: 14px;
-  }
-
-  .now-card:nth-child(1) p {
-    font-size: 16px;
-    max-width: 34ch;
-  }
-
-  .now-card:nth-child(2),
-  .now-card:nth-child(3),
-  .now-card:nth-child(4) {
-    padding: 22px 24px;
-    min-height: 180px;
-  }
-
-  .now-card:nth-child(2) h3,
-  .now-card:nth-child(3) h3,
-  .now-card:nth-child(4) h3 {
-    font-size: 21px;
-  }
-}
-
-/* ========================================
    Timeline (Wheel)
    ======================================== */
 
@@ -871,6 +696,64 @@ button {
 
 .timeline-dots .dot:hover {
   background: var(--accent-mid);
+}
+
+/* ========================================
+   Clawd Pixel Pet
+   ======================================== */
+
+.card-pet {
+  margin-top: 18px;
+}
+
+.clawd-video-keyer {
+  width: clamp(140px, 18vw, 220px);
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+
+.clawd-video-source {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.clawd-video {
+  width: clamp(140px, 18vw, 220px);
+  height: auto;
+  display: block;
+  image-rendering: auto;
+  border: 0;
+  pointer-events: none;
+}
+
+.clawd-video-keyer.is-fallback .clawd-video-source {
+  position: relative;
+  opacity: 1;
+  display: block;
+  mix-blend-mode: multiply;
+  filter: contrast(1.35) brightness(1.1) saturate(1.08);
+}
+
+.clawd-video-keyer.is-fallback .clawd-video {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 /* ========================================
@@ -1111,10 +994,6 @@ button {
     max-width: 90%;
   }
 
-  .now-grid {
-    grid-template-columns: 1fr;
-    max-width: 780px;
-  }
 }
 
 /* ========================================
@@ -1237,28 +1116,6 @@ button {
     margin-top: 16px;
     font-size: 0.7rem;
     padding: 4px 12px;
-  }
-
-  .section-now {
-    padding: 48px 20px 24px;
-  }
-
-  .now-grid {
-    gap: 14px;
-  }
-
-  .now-card {
-    padding: 18px;
-  }
-
-  .now-card h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .now-card p {
-    font-size: 14px;
-    line-height: 1.65;
   }
 
   .section-timeline {
