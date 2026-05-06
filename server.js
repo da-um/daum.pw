@@ -6,7 +6,7 @@ const PORT = Number(process.env.PORT) || 3456;
 const ROOT_DIR = __dirname;
 const DATA_DIR = path.join(ROOT_DIR, 'data');
 const DATA_FILES = new Set(['projects', 'timeline', 'signatures']);
-const PUBLIC_FILES = new Set(['/index.html', '/admin.html']);
+const PUBLIC_FILES = new Set(['/index.html']);
 const PUBLIC_DIRS = ['/assets/', '/css/', '/js/'];
 const MAX_BODY_SIZE = 1024 * 1024;
 const ADMIN_AUTH = process.env.ADMIN_AUTH || '';
@@ -150,8 +150,6 @@ const server = http.createServer((req, res) => {
     send(res, 404, 'Not found');
     return;
   }
-
-  if (pathname === '/admin.html' && !requireAdminAuth(req, res)) return;
 
   const filePath = path.resolve(ROOT_DIR, `.${pathname}`);
   if (!isInside(ROOT_DIR, filePath)) {
