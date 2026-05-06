@@ -73,11 +73,12 @@ body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 0;
+  width: 8px;
+  visibility: hidden;
 }
 
 html:hover::-webkit-scrollbar {
-  width: 8px;
+  visibility: visible;
 }
 
 ::-webkit-scrollbar-track {
