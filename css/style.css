@@ -73,6 +73,10 @@ body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
+  width: 0;
+}
+
+body:hover::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -81,14 +85,8 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+  border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
