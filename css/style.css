@@ -73,12 +73,7 @@ body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  visibility: hidden;
-}
-
-html:hover::-webkit-scrollbar {
-  visibility: visible;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -86,10 +81,12 @@ html:hover::-webkit-scrollbar {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: rgba(245, 184, 66, 0.15);
   border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 ::selection {
