@@ -259,24 +259,16 @@
   <script>
     (function() {
       const sigs = [
-        { l1: 'Ctrl + Shift + T', l2: '恢复刚关掉的浏览器标签页' },
-        { l1: 'Chrome 地址栏输入', l2: 'data:text/html,<html contenteditable> 临时记事本' },
-        { l1: 'Git 提交写错了', l2: 'git commit --amend 直接改' },
-        { l1: 'typeof NaN', l2: "==='number'，JS 的温柔陷阱" },
-        { l1: 'VS Code 禅模式', l2: 'Ctrl + K 松手再按 Z' },
-        { l1: 'DevTools 输入 $0', l2: '拿到当前选中的 DOM 元素' },
-        { l1: 'HTTP 418', l2: "I'm a teapot" },
-        { l1: 'Win + V', l2: 'Windows 剪贴板历史' },
-        { l1: 'console.table()', l2: '对象数组秒变好看表格' },
-        { l1: 'URL 的 # 哈希', l2: '不会发送到服务器' },
-        { l1: '按 F2 重命名', l2: '比右键快十倍' },
-        { l1: '网页图片右键', l2: '在新标签页打开 = 拿原图' },
-        { l1: 'CSS :empty', l2: '选中无内容的元素，省一个 class' },
-        { l1: 'node -p', l2: "'1+1' 比开浏览器控制台还快" }
+        { bad: 'vscode', good: 'claude code / kimi code / codex 启动器' },
+        { bad: 'PCL', good: '多线程下载器！' },
+        { bad: '恭喜我', good: '领到了小米送的659cny的余额哈哈哈哈' },
+        { bad: '原神萌新一只喵', good: '求佬带带喵，uid246384808' }
       ];
       const s = sigs[Math.floor(Math.random() * sigs.length)];
       const el = document.getElementById('heroLine1');
-      if (el) el.innerHTML = s.l1 + '<br>' + s.l2;
+      if (el) {
+        el.innerHTML = '<span class="sig-bad">' + s.bad + '<i class="sig-x"></i></span><br><span class="sig-good">' + s.good + '<i class="sig-check"></i></span>';
+      }
     })();
   </script>
 
