@@ -258,29 +258,6 @@
 
   <script>
     (function() {
-      const styleEl = document.createElement('style');
-      styleEl.id = 'dynamic-scrollbar';
-      document.head.appendChild(styleEl);
-      const isTouch = window.matchMedia('(pointer: coarse)').matches;
-
-      function show() {
-        styleEl.textContent = '::-webkit-scrollbar-thumb { background: var(--accent) !important; }';
-      }
-      function hide() {
-        styleEl.textContent = '::-webkit-scrollbar-thumb { background: transparent !important; }';
-      }
-
-      if (isTouch) { show(); return; }
-
-      document.addEventListener('mousemove', (e) => {
-        if (e.clientX > window.innerWidth - 40) show(); else hide();
-      });
-      document.addEventListener('mouseleave', hide);
-      hide();
-    })();
-  </script>
-  <script>
-    (function() {
       const sigs = [
         { l1: 'Ctrl + Shift + T', l2: '恢复刚关掉的浏览器标签页' },
         { l1: 'Chrome 地址栏输入', l2: 'data:text/html,<html contenteditable> 临时记事本' },
@@ -302,6 +279,7 @@
       if (el) el.innerHTML = s.l1 + '<br>' + s.l2;
     })();
   </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="js/main.js" defer></script>

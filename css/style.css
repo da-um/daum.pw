@@ -71,9 +71,9 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Custom Scrollbar */
+/* Thin native scrollbar */
 html::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
   background: transparent;
 }
 
@@ -83,7 +83,7 @@ html::-webkit-scrollbar-track {
 }
 
 html::-webkit-scrollbar-thumb {
-  background: transparent;
+  background: var(--accent);
   border-radius: 999px;
   border: none;
 }
