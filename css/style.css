@@ -451,6 +451,50 @@ button {
   box-shadow: 0 8px 20px var(--shadow);
 }
 
+.hero-social a[data-tooltip] {
+  position: relative;
+}
+
+.hero-social a[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  padding: 5px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+.hero-social a[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.hero-social a[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--border);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.hero-social a[data-tooltip]:hover::before {
+  opacity: 1;
+}
+
 .hero-social svg {
   width: 20px;
   height: 20px;
