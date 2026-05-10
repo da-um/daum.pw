@@ -261,13 +261,17 @@
       const sigs = [
         { bad: 'vscode', good: 'claude code / kimi code / codex 启动器' },
         { bad: 'PCL', good: '多线程下载器！' },
-        { bad: '恭喜我', good: '领到了小米送的659cny的余额哈哈哈哈' },
-        { bad: '原神萌新一只喵', good: '求佬带带喵，uid246384808' }
+        { bad: '恭喜我', good: '领到了小米送的659cny的余额哈哈哈哈', mark: false },
+        { bad: '原神萌新一只喵', good: '求佬带带喵，uid246384808', mark: false }
       ];
       const s = sigs[Math.floor(Math.random() * sigs.length)];
       const el = document.getElementById('heroLine1');
       if (el) {
-        el.innerHTML = '<span class="sig-bad">' + s.bad + '<i class="sig-x"></i></span><br><span class="sig-good">' + s.good + '<i class="sig-check"></i></span>';
+        if (s.mark !== false) {
+          el.innerHTML = '<span class="sig-bad">' + s.bad + '<i class="sig-x"></i></span><br><span class="sig-good">' + s.good + '<i class="sig-check"></i></span>';
+        } else {
+          el.innerHTML = s.bad + '<br>' + s.good;
+        }
       }
     })();
   </script>
