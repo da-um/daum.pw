@@ -1,0 +1,42 @@
+html.boot {
+  overflow: hidden;
+}
+
+/* The page's own background (src/styles/global.css --page), over everything until the scene is in. */
+#boot {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: linear-gradient(135deg, rgb(245 158 11 / 0.05), rgb(251 146 60 / 0.05)) fixed, #fcfaf6;
+  transition: opacity 0.35s;
+}
+
+#boot.out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Centered and sized as the scene frames the wordmark (lib/mark.ts MARK_FIT). */
+#boot svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: WIDTH_WIDE;
+  width: WIDTH_WIDE_D;
+  height: auto;
+  overflow: visible;
+  translate: -50% -50%;
+}
+
+@media (max-aspect-ratio: 999/1000) {
+  #boot svg {
+    width: WIDTH_TALL;
+    width: WIDTH_TALL_D;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #boot {
+    transition: none;
+  }
+}

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>daum12569 预览</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Preview gate. Caddy serves this page for every path until the pwkey
+         cookie matches. Standalone on purpose: app assets are gated too. -->
+    <style>
+      /* The site's colors (src/styles/global.css): the page, ink and dim text,
+         and the wordmark's face for the name, the button and the focus ring. */
+      :root {
+        --cream: #fcfaf6;
+        --ink: #44403c;
+        --dim: #78716c;
+        --face-from: color-mix(in srgb, #f59e0b 55%, white);
+        --face-to: color-mix(in srgb, #fb923c 55%, white);
+        --face: linear-gradient(90deg, var(--face-from), var(--face-to));
+        --shade: color-mix(in srgb, color-mix(in srgb, #f59e0b 50%, #fb923c) 36%, var(--cream));
+        color-scheme: light;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        padding: 1.25rem;
+        background: linear-gradient(135deg, rgb(245 158 11 / 0.05), rgb(251 146 60 / 0.05)) fixed, var(--cream);
+        color: var(--ink);
+        font: 16px/1.7 system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      }
+      main { width: min(100%, 22rem); }
+      h1 {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        background: var(--face);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      p { margin: 0.25rem 0 0; color: var(--dim); }
+      form { margin-top: 2rem; }
+      label { font-size: 14px; color: var(--dim); }
+      .row { display: flex; gap: 0.5rem; margin-top: 0.375rem; }
+      input {
+        flex: 1;
+        min-width: 0;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--shade);
+        border-radius: 4px;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+      }
+      input:focus { outline: 3px solid var(--face-from); outline-offset: 1px; border-color: transparent; }
+      button {
+        padding: 0.5rem 1rem;
+        border: 0;
+        border-radius: 4px;
+        background: var(--face);
+        color: var(--ink);
+        font: inherit;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      button:focus-visible { outline: 3px solid var(--face-from); outline-offset: 2px; }
+      .error { margin-top: 0.75rem; font-size: 14px; color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>daum12569</h1>
+      <p>这是预览版，输入密钥后访问。</p>
+      <form id="gate">
+        <label for="key">密钥</label>
+        <div class="row">
+          <input id="key" name="key" type="password" required autocomplete="off" autofocus />
+          <button type="submit">进入</button>
+        </div>
+        <p class="error" role="alert" id="error" hidden>密钥不对，请重新输入。</p>
+      </form>
+    </main>
+    <script>
+      const form = document.getElementById('gate');
+      // A cookie that is present here was rejected by Caddy.
+      if (/(?:^|;\s*)pwkey=/.test(document.cookie)) document.getElementById('error').hidden = false;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const key = String(new FormData(form).get('key') || '').trim();
+        document.cookie = `pwkey=${encodeURIComponent(key)}; Path=/; Max-Age=2592000; SameSite=Lax; Secure`;
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

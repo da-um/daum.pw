@@ -1,0 +1,400 @@
+/* Colors: daum110715/daum.pw src/styles/neu.css. See CLAUDE.md before changing.
+   Everything colored takes it from the opening wordmark: names and titles wear its face,
+   --face, and so does the focus ring; small text stays ink and dim. */
+:root {
+  --cream: #fcfaf6;
+  --ink: #44403c;
+  --dim: #78716c;
+  --amber: #f59e0b;
+  --orange: #fb923c;
+  --amber-soft: rgb(245 158 11 / 0.12);
+  --face-from: color-mix(in srgb, var(--amber) 55%, white);
+  --face: linear-gradient(90deg, color-mix(in srgb, var(--amber) 55%, white), color-mix(in srgb, var(--orange) 55%, white));
+  /* A light step of the wordmark's long shadow, for tracks. */
+  --shade: color-mix(in srgb, color-mix(in srgb, var(--amber) 50%, var(--orange)) 14%, var(--cream));
+  --wash: 0.05;
+  --page: linear-gradient(135deg, rgb(245 158 11 / var(--wash)), rgb(251 146 60 / var(--wash))) fixed, var(--cream);
+  --snap: cubic-bezier(0.7, 0, 0.2, 1);
+  --font: 'Outfit Variable', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans CJK SC',
+    sans-serif;
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+  /* daumini's own colors (daumini web/src/app.css), for its section, drawn in its hand. */
+  --sketch-paper: #ffffff;
+  --sketch-ink: #1e1e1e;
+  --sketch-pen: #1971c2;
+  --sketch-mark: #e03131;
+  /* qiqi.help's own colors (qiqi.help src/styles/base.css, light), for its section. */
+  --qiqi-paper: #fcfbfa;
+  --qiqi-ink: #2b2430;
+  --qiqi-accent: #6a4c9e;
+  --qiqi-hand: 'qiqi WenKai', 'LXGW WenKai', 'Kaiti SC', 'STKaiti', 'KaiTi', serif;
+  color-scheme: light;
+}
+
+/* 霞鹜文楷 (LXGW WenKai, OFL), cut to qiqi.help's name and the nine nations. */
+@font-face {
+  font-family: 'qiqi WenKai';
+  font-display: swap;
+  src: url('../assets/fonts/wenkai-qiqi.woff') format('woff');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+/* The page is one long shot: the progress line stands in for the scrollbar, and none
+   turns up as the loading screen leaves to narrow the view. The static page keeps it. */
+html:not(.flat) {
+  scrollbar-width: none;
+}
+
+html:not(.flat)::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+p {
+  margin: 0;
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* The face's amber end, drawn thick enough to see on the cream. */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--face-from);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--amber-soft);
+  color: var(--ink);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Scene */
+
+/* Under the scene, the pages it shows through holes; over it, text and links. */
+.under {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.overlay a,
+.overlay button {
+  pointer-events: auto;
+}
+
+/* Hidden until the scene has drawn its first frame. */
+html:not(.gl) .overlay,
+html:not(.gl) .under {
+  visibility: hidden;
+}
+
+.progress {
+  position: absolute;
+  left: var(--gutter);
+  bottom: var(--gutter);
+  width: 7rem;
+  height: 2px;
+  background: var(--shade);
+  opacity: 0;
+}
+
+/* A short line in the middle at the foot of the first screen, the wordmark's
+   face running down it now and then. */
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: var(--gutter);
+  width: 2px;
+  height: 3.5rem;
+  translate: -50% 0;
+  overflow: hidden;
+  background: var(--shade);
+}
+
+.cue span {
+  display: block;
+  height: 100%;
+  background: var(--face-from);
+  transform: translateY(-100%);
+  animation: cue 2.6s var(--snap) 1s infinite;
+}
+
+@keyframes cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  55%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue span {
+    animation: none;
+  }
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--face);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.labels span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--qiqi-hand);
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--qiqi-ink);
+  opacity: 0;
+  white-space: nowrap;
+  /* Scaled to qiqi.help's own names as they land on them, about the point they hang from. */
+  transform-origin: 50% 0;
+}
+
+/* A live site, pinned onto its place in the scene. Sized like LIVE_W x LIVE_H in scene/live.ts. */
+.live {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1280px;
+  height: 800px;
+  transform-origin: 0 0;
+  background: var(--cream);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.live.qiqi {
+  background: var(--qiqi-paper);
+}
+
+.live.sketch {
+  background: var(--sketch-paper);
+}
+
+.live iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.live.loaded iframe {
+  opacity: 1;
+}
+
+/* qiqi.help takes the pointer, the wheel and the keys like any page, once mostly in (scene/live.ts show). */
+.live.use iframe {
+  pointer-events: inherit;
+}
+
+.title {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  --in: 0;
+}
+
+.title a {
+  display: block;
+  transform: translateY(calc((1 - var(--in)) * 1.5rem));
+}
+
+/* Both work titles sit at the foot of the column left of their page. */
+.title.qiqi {
+  left: var(--gutter);
+  bottom: calc(var(--gutter) + 2.5rem);
+}
+
+/* qiqi.help's name as its own bar writes it: 霞鹜文楷, ink, the accent under the pointer. */
+.title.qiqi a {
+  font-family: var(--qiqi-hand);
+  font-size: clamp(1.5rem, 2.8vw, 3rem);
+  line-height: 1;
+  color: var(--qiqi-ink);
+}
+
+.title.qiqi a:hover {
+  color: var(--qiqi-accent);
+}
+
+.title.daumini {
+  left: var(--gutter);
+  bottom: calc(var(--gutter) + 2.5rem);
+}
+
+/* Written out left to right as it comes in, the red pen dots last. */
+.title.daumini a {
+  width: clamp(6rem, 10vw, 13rem);
+  fill: var(--sketch-ink);
+}
+
+.title.daumini a:hover {
+  fill: var(--sketch-pen);
+}
+
+.title.daumini svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  clip-path: inset(-20% calc((1 - var(--in)) * 100%) -20% -5%);
+}
+
+.title.daumini .pen-dot {
+  fill: var(--sketch-mark);
+  transform-box: fill-box;
+  transform-origin: center;
+  scale: clamp(0, calc((var(--in) - 0.8) * 5), 1);
+}
+
+/* Names and titles: the wordmark's face. They warm to amber under the pointer. */
+.end-mail,
+.flat-work span {
+  background: var(--face);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.end-mail:hover,
+.flat-work:hover span {
+  background: var(--amber);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.end {
+  position: absolute;
+  left: var(--gutter);
+  bottom: calc(var(--gutter) + 2.5rem);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.end-mail {
+  display: inline-block;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4.6vw, 4.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.end-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* An account ID that copies itself: reads like the links beside it. */
+.copy-id {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.end-links .copy-id:hover,
+.end-links a:hover {
+  color: var(--amber);
+}
+
+@media (max-width: 767px) {
+  .title.qiqi {
+    top: calc(var(--gutter) + 3.5rem);
+    bottom: auto;
+  }
+}
+
+/* Without WebGL, or with reduced motion */
+
+.flat {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 6vw, 5rem) var(--gutter);
+  display: grid;
+  gap: clamp(3rem, 8vw, 6rem);
+}
+
+.flat-mark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.flat-work span {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
